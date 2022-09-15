@@ -5,28 +5,73 @@ export const styles = StyleSheet.create({
   active: {
     border: "0.5px solid gray",
     borderRadius: "10px",
-    background: "grey",
+    backgroundColor: "#fff",
     color: "antiquewhite",
   },
 
   todolist: {
-    background: "#dee0e0",
-    width: "50%",
-    minWidth: "fit-content",
+    backgroundColor: "#85C1E9",
+    // width: "50%",
+
     display: "flex",
-    // flex: "0 1 auto",
+    flex: 1,
     flexDirection: "column",
     justifyContent: "center",
+    alignItems: "center",
     padding: "20px",
     fontSize: "24pt",
   },
 
   header: {
-    color: "rgba(128, 0, 0, 0.7)",
+    color: "rgba(128, 0, 0, 1)",
     fontSize: 40,
     marginBottom: 20,
   },
 
+  inputblock: {
+    width: "50%",
+    // flex: 1,
+    padding: 5,
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    borderRadius: 15,
+    color: "#fff",
+    backgroundColor: "rgb(0,0,0)",
+    opacity: 0.7,
+    margin: 30,
+  },
+
+  inputText: {
+    height: 30,
+    textAlign: "center",
+    borderBottomWidth: "1",
+    borderColor: "#000",
+    borderBottomWidth: 1,
+  },
+
+  text: {
+    color: "#fff",
+  },
+
+  modalwindow: {},
+
+  modal: {
+    height: "25%",
+    backgroundColor: "#fff",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
+  },
+
+  todo: {},
+
+  todoContent: {},
+
+  complited: {
+    textDecorationLine: "line-through",
+    opacity: "0.5",
+  },
   //   content_inputblock: {
   //     background: "rgb(250, 249, 248)",
   //     padding: 10,

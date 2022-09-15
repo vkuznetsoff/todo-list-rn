@@ -1,179 +1,75 @@
-import { useCallback, useState } from "react";
-import { ACTIVE, ALL, COMPLITED } from "./utils/statuses";
-// import Todo from "../Todo/Todo";
-// import uniqid from "uniqid";
+import { useState } from "react";
+import { FlatList, SafeAreaView, StyleSheet, Text, View } from "react-native";
+import Todo from "./Todo";
+import InputForm from "./InputForm";
+import { uniqid } from "uniqid";
 
-import arrow from "../assets/img/arrow.svg";
-
-import { Image, TextInput, View } from "react-native";
-
-import { styles } from "./styles";
+export const COMPLITED = "complited";
+export const ACTIVE = "active";
+export const ALL = "all";
 
 const initState = [
   {
-    id: "1",
-    text: "Дизайн проекта",
+    id: 1,
+    text: "Дизайн",
     status: COMPLITED,
   },
-
   {
-    id: "2",
+    id: 2,
     text: "Верстка",
     status: ACTIVE,
   },
-
   {
-    id: "3",
-    text: "Написание кода",
+    id: 3,
+    text: "Программирование",
     status: ACTIVE,
   },
 ];
 
-const TodoList = () => {
-  const [todos, setTodos] = useState(() => initState);
+const Todolist = () => {
+  const [todos, setTodos] = useState(initState);
 
-  const [group, setGroup] = useState(ALL); //active | complited | all
-
-  const activeCount = todos.filter((todo) => todo.status === ACTIVE).length;
-  const complitedCount = todos.filter(
-    (todo) => todo.status === COMPLITED
-  ).length;
-
-  //Изменения статуса задания
-  const updateTodo = (id) => {
-    setTodos(
-      todos.map((todo) => {
-        if (todo.id === id) {
-          return {
-            ...todo,
-            status: todo.status === COMPLITED ? ACTIVE : COMPLITED,
-          };
-        }
-        return todo;
-      })
-    );
-  };
-
-  const updateTodoMemoized = useCallback((id) => updateTodo(id), [todos]);
-
-  //Обработчики выбора группы для отображения списка задач
-  //(Все, активные, завершенные)
-  const displayAll = () => {
-    setGroup(ALL);
-  };
-
-  const displayActive = () => {
-    setGroup(ACTIVE);
-  };
-
-  const displayComplited = () => {
-    setGroup(COMPLITED);
-  };
-
-  //Функция удаления завершенных заданий
-  const clearComplited = () => {
-    setTodos(todos.filter((todo) => todo.status !== COMPLITED));
-  };
-
-  //Фильтрация списка дел в зависимости от выбранной группы
-  const filteredTodos = (list) =>
-    group !== "all" ? list.filter((todo) => todo.status === group) : list;
-
-  //Стейт для textarea
-  const [text, setText] = useState("");
-
-  //Добавление нового задания в стейт
   const addTodo = (text) => {
-    setTodos([...todos, { id: uniqid(), text: text.trim(), status: ACTIVE }]);
-    setText("");
-  };
-
-  //Добавление нового задание по нажатию изображения (стрелки-вниз)
-  const inputImg = () => {
-    if (text.trim()) {
-      addTodo(text);
-    }
-  };
-
-  //Добавление нового задание по нажатию Enter
-  const inputTextarea = (e) => {
-    if (e.key === "Enter" && text.trim()) {
-      addTodo(text);
-    }
+    setTodos((todos) => {
+      const newItem = {
+        id: Math.random(999).toString(),
+        text: text,
+        status: ACTIVE,
+      };
+      return [newItem, ...todos];
+    });
   };
 
   return (
     <View style={styles.todolist}>
-      <View style={styles.header}>Todo List</View>
-      <View>
-        <Image
-          // className="content_textarea__img"
-          source={arrow}
-          onClick={inputImg}
+      <Text style={styles.header}>Todo List</Text>
+
+      <InputForm addTodo={addTodo} />
+
+      <SafeAreaView>
+        <FlatList
+          data={todos}
+          renderItem={({ item }) => <Todo todo={item} />}
+          keyExtractor={(item) => item.id}
         />
-        <TextInput
-          placeholder="What needs to be done?"
-          value={text}
-          onChange={setText}
-
-          // onKeyDown={(e) => inputTextarea(e)}
-        />
-      </View>
-
-      {/* <View className="todolist__content">
-//         {filteredTodos(todos).map((todo) => (
-//           <Todo key={todo.id} todo={todo} updateTodo={updateTodoMemoized} />
-//         ))}
-
-//         {complitedCount === 0 && group === COMPLITED ? (
-//           <View className="content__comment">Нет завершенных заданий</View>
-//         ) : undefined}
-//         {activeCount === 0 && group === ACTIVE ? (
-//           <View className="content__comment">Нет активных заданий</View>
-//         ) : undefined}
-//         {todos.length === 0 && group === ALL ? (
-//           <View className="content__comment">Нет заданий</View>
-//         ) : undefined}
-//       </View>
-
-//       {todos ? (
-//         <View className="todolist__bottom">
-//           <View className="bottom__leftitems">
-//             <View> Активных:</View>
-//             <View className="bottom__leftitems_count">&nbsp;{activeCount}</View>
-//           </View>
-
-//           <View className="bottom__groups">
-//             <View
-//               className="groups__item"
-//               style={group === ALL ? styles.active : undefined}
-//               onClick={displayAll}
-//             >
-//               Все
-//             </View>
-//             <View
-//               className="groups__item"
-//               style={group === ACTIVE ? styles.active : undefined}
-//               onClick={displayActive}
-//             >
-//               Активные
-//             </View>
-//             <View
-//               className="groups__item"
-//               style={group === COMPLITED ? styles.active : undefined}
-//               onClick={displayComplited}
-//             >
-//               Завершенные
-//             </View>
-//           </View>
-
-//           <View className="bottom__clear" onClick={clearComplited}>
-//             <View className="bottom__clear__text">Удалить завершенные</View>
-//           </View>
-//         </View>
-//       ) : undefined} */}
+      </SafeAreaView>
     </View>
   );
 };
 
-export default TodoList;
+const styles = StyleSheet.create({
+  todolist: {
+    flexDirection: "column",
+    height: "500%",
+  },
+
+  header: {
+    fontSize: "26pt",
+    fontWeight: "600",
+    backgroundColor: "#ABEBC6",
+    padding: 15,
+    textAlign: "center",
+  },
+});
+
+export default Todolist;
