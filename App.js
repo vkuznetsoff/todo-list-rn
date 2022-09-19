@@ -8,11 +8,19 @@ import TodoList from "./components/Todolist";
 
 const App = () => {
   return (
-    <View style={{ backgroundColor: "#AED6F1", flex: 1 }}>
+    <View style={styles.app}>
       <TodoList />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  app: {
+    backgroundColor: "#AED6F1",
+    flex: 1,
+    width: "100%",
+  },
+});
 
 export default App;
 

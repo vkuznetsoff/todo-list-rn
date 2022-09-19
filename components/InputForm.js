@@ -34,7 +34,9 @@ const styles = StyleSheet.create({
   inputform: {
     flexDirection: "row",
     borderBottomWidth: 1,
+    // width: "60%",
     marginBottom: 20,
+    justifyContent: "center",
   },
 });
 

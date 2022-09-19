@@ -46,13 +46,16 @@ const Todolist = () => {
 
       <InputForm addTodo={addTodo} />
 
-      <SafeAreaView>
+      <View>
         <FlatList
           data={todos}
           renderItem={({ item }) => <Todo todo={item} />}
           keyExtractor={(item) => item.id}
+          style={styles.flatlist}
         />
-      </SafeAreaView>
+      </View>
+
+      <View></View>
     </View>
   );
 };
@@ -60,15 +63,18 @@ const Todolist = () => {
 const styles = StyleSheet.create({
   todolist: {
     flexDirection: "column",
-    height: "500%",
+    // alignItems: "center",
+    width: "100%",
   },
 
   header: {
     fontSize: "26pt",
     fontWeight: "600",
+    width: "100%",
     backgroundColor: "#ABEBC6",
     padding: 15,
     textAlign: "center",
+    marginBottom: 20,
   },
 });
 
