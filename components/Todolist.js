@@ -1,33 +1,30 @@
 import { useState } from "react";
-import { FlatList, SafeAreaView, StyleSheet, Text, View } from "react-native";
+import {
+  FlatList,
+  ImageBackground,
+  SafeAreaView,
+  Text,
+  View,
+} from "react-native";
 import Todo from "./Todo";
 import InputForm from "./InputForm";
-import { uniqid } from "uniqid";
 
-export const COMPLITED = "complited";
-export const ACTIVE = "active";
-export const ALL = "all";
+import { styles } from "./styles";
+import { ACTIVE, COMPLITED } from "./utils/statuses";
 
 const initState = [
   {
-    id: 1,
-    text: "Дизайн",
-    status: COMPLITED,
-  },
-  {
-    id: 2,
-    text: "Верстка",
-    status: ACTIVE,
-  },
-  {
-    id: 3,
-    text: "Программирование",
+    id: Math.random(999).toString(),
+    text: "Создать список дел",
     status: ACTIVE,
   },
 ];
 
 const Todolist = () => {
   const [todos, setTodos] = useState(initState);
+
+  const groupCount = (status) =>
+    todos.filter((todo) => todo.status === status).length;
 
   const addTodo = (text) => {
     setTodos((todos) => {
@@ -40,42 +37,75 @@ const Todolist = () => {
     });
   };
 
+  const updateTodo = (id) => {
+    setTodos(
+      todos.map((todo) => {
+        if (todo.id === id) {
+          return {
+            ...todo,
+            status: todo.status === COMPLITED ? ACTIVE : COMPLITED,
+          };
+        }
+        return todo;
+      })
+    );
+  };
+
+  const removeTodo = (id) => {
+    setTodos(todos.filter((item) => item.id !== id));
+  };
+
   return (
-    <View style={styles.todolist}>
-      <Text style={styles.header}>Todo List</Text>
+    <SafeAreaView style={styles.todolist}>
+      <ImageBackground
+        style={styles.bg_image}
+        resizeMode="cover"
+        source={require("../assets/img/bgwood.jpg")}
+      >
+        <Text style={styles.header}>Список дел</Text>
 
-      <InputForm addTodo={addTodo} />
+        <InputForm addTodo={addTodo} />
 
-      <View>
-        <FlatList
-          data={todos}
-          renderItem={({ item }) => <Todo todo={item} />}
-          keyExtractor={(item) => item.id}
-          style={styles.flatlist}
-        />
-      </View>
+        <View style={styles.todolist_content}>
+          <FlatList
+            data={todos}
+            renderItem={({ item }) =>
+              item.status === ACTIVE ? (
+                <Todo
+                  todo={item}
+                  updateTodo={updateTodo}
+                  removeTodo={removeTodo}
+                />
+              ) : undefined
+            }
+            keyExtractor={(item) => item.id}
+            style={styles.flatlist}
+          />
 
-      <View></View>
-    </View>
+          <View style={styles.bottom}>
+            {groupCount(COMPLITED) !== 0 ? (
+              <Text style={styles.bottom_header}>Завершенные</Text>
+            ) : undefined}
+
+            <FlatList
+              data={todos}
+              renderItem={({ item }) =>
+                item.status === COMPLITED ? (
+                  <Todo
+                    todo={item}
+                    updateTodo={updateTodo}
+                    removeTodo={removeTodo}
+                  />
+                ) : undefined
+              }
+              keyExtractor={(item) => item.id}
+              style={styles.flatlist}
+            />
+          </View>
+        </View>
+      </ImageBackground>
+    </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  todolist: {
-    flexDirection: "column",
-    // alignItems: "center",
-    width: "100%",
-  },
-
-  header: {
-    fontSize: "26pt",
-    fontWeight: "600",
-    width: "100%",
-    backgroundColor: "#ABEBC6",
-    padding: 15,
-    textAlign: "center",
-    marginBottom: 20,
-  },
-});
 
 export default Todolist;

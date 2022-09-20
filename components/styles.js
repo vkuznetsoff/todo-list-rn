@@ -1,181 +1,46 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-  //Стиль кнопки при выборе группы
-  active: {
-    border: "0.5px solid gray",
-    borderRadius: "10px",
-    backgroundColor: "#fff",
-    color: "antiquewhite",
+  bg_image: {
+    width: "100%",
+    minHeight: "100vh",
+    flex: 1,
   },
 
   todolist: {
-    backgroundColor: "#85C1E9",
-    // width: "50%",
-
-    display: "flex",
-    flex: 1,
     flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    padding: "20px",
-    fontSize: "24pt",
+    width: "100%",
   },
 
   header: {
-    color: "rgba(128, 0, 0, 1)",
-    fontSize: 40,
-    marginBottom: 20,
+    fontSize: "26pt",
+    fontWeight: "700",
+    width: "100%",
+    height: 100,
+    color: "#424949",
+    padding: 15,
+    marginTop: 20,
+    padding: 25,
+    borderBottomWidth: 2,
+    borderBottomColor: "rgba(40, 55, 71, 0.7)",
   },
 
-  inputblock: {
-    width: "50%",
-    // flex: 1,
-    padding: 5,
-    flexDirection: "row",
-    justifyContent: "space-around",
-    alignItems: "center",
-    borderRadius: 15,
-    color: "#fff",
-    backgroundColor: "rgb(0,0,0)",
-    opacity: 0.7,
-    margin: 30,
+  todolist_content: {
+    flex: 1,
   },
 
-  inputText: {
-    height: 30,
-    textAlign: "center",
-    borderBottomWidth: "1",
-    borderColor: "#000",
-    borderBottomWidth: 1,
+  bottom: {
+    marginTop: 20,
   },
 
-  text: {
-    color: "#fff",
+  bottom_header: {
+    width: "fit-content",
+    padding: 8,
+    borderRadius: 10,
+    fontSize: 20,
+    fontWeight: 500,
+    marginLeft: 20,
+    backgroundColor: "#34495E",
+    color: "#D7DBDD",
   },
-
-  modalwindow: {},
-
-  modal: {
-    height: "25%",
-    backgroundColor: "#fff",
-    justifyContent: "center",
-    alignItems: "center",
-    flexDirection: "row",
-  },
-
-  todo: {},
-
-  todoContent: {},
-
-  complited: {
-    textDecorationLine: "line-through",
-    opacity: "0.5",
-  },
-  //   content_inputblock: {
-  //     background: "rgb(250, 249, 248)",
-  //     padding: 10,
-  //   },
-
-  //   content_textarea: {
-  //     display: "flex",
-  //     flexDirection: "row",
-  //     alignItems: "center",
-  //     margin: 10,
-  //   },
 });
-
-//   .content_textarea img {
-//     height: 100%;
-//     margin-right: 20px;
-
-//   }
-
-//   .content_textarea textarea {
-//     font-style: oblique;
-//     flex: 1;
-//     font-size: 24pt;
-//     line-height: 36pt;
-//     border: none;
-//     outline: none;
-//     resize: none;
-//     background: none;
-//     max-height: 40px;
-//     overflow: hidden;
-
-//   }
-
-//   .todolist__bottom {
-//     padding: 0 10px;
-//     margin-top: 20px;
-//     display: flex;
-//     flex-direction: row;
-//     align-items: center;
-//     font-size: 16pt;
-//     flex-wrap: wrap;
-//     /* flex: 0 1 auto; */
-//   }
-
-//   .bottom__leftitems {
-//     display: flex;
-//     flex: 1;
-//     flex-direction: row;
-//     align-items: center;
-//     border: 1px solid;
-//     justify-content: center;
-
-//     border-radius: 15px;
-//     margin: 0px 20px;
-//     padding: 5px;
-//     background: #58D68D;
-//     color: #2C3E50;
-
-//   }
-
-//   .bottom__leftitems_count {
-//     font-weight: 600;
-//   }
-
-//   .bottom__groups {
-//     display: inherit;
-//     justify-content: space-evenly;
-//     flex: 1;
-//   }
-
-//   .groups__item {
-//     cursor: pointer;
-//     text-align: center;
-//     padding: 5px;
-
-//   }
-
-//   .groups__item:hover {
-//     color: rgb(128, 139, 150);
-//   }
-
-//   .bottom__clear {
-//     flex: 1;
-//     text-align: right;
-//     cursor: pointer;
-//     text-align: center;
-//   }
-
-//   .bottom__clear__text {
-//     border: 1px solid;
-//     border-radius: 15px;
-//     margin: 0px 20px;
-//     padding: 5px;
-//     background: #C0392B;
-//     color: antiquewhite;
-//   }
-
-//   .bottom__clear:hover {
-//     filter: brightness(130%);
-//   }
-
-//   .content__comment {
-//     font-size: 18pt;
-//     font-style: oblique;
-//     opacity: 50%;
-//     padding: 10px;
-//   }

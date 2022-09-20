@@ -1,4 +1,4 @@
-import { SafeAreaView, StyleSheet, Text, TextInput, View } from "react-native";
+import { StyleSheet, TextInput, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
 
@@ -17,14 +17,17 @@ const InputForm = ({ addTodo }) => {
     <View style={styles.inputform}>
       <Ionicons
         name="md-add-circle"
-        size={24}
+        size={40}
         color="black"
         onPress={addHandle}
+        style={{ marginRight: 15 }}
       />
       <TextInput
         value={text}
         placeholder="Добавьте задачу"
         onChangeText={changeText}
+        style={styles.inputtext}
+        placeholderTextColor={"rgba(40, 55, 71, 0.4)"}
       />
     </View>
   );
@@ -33,10 +36,16 @@ const InputForm = ({ addTodo }) => {
 const styles = StyleSheet.create({
   inputform: {
     flexDirection: "row",
-    borderBottomWidth: 1,
-    // width: "60%",
+    width: "60%",
+    paddingLeft: 20,
     marginBottom: 20,
-    justifyContent: "center",
+    marginTop: 20,
+  },
+
+  inputtext: {
+    fontSize: 22,
+    borderBottomWidth: 1,
+    borderColor: "rgba(40, 55, 71, 0.7)",
   },
 });
 
