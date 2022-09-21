@@ -17,7 +17,17 @@ const Todo = ({ todo, updateTodo, removeTodo }) => {
 
   return (
     <View>
-      <View style={styles.todoitem}>
+      <View
+        style={[
+          styles.todoitem,
+          {
+            backgroundColor:
+              todo.status === "complited"
+                ? "rgba(110, 44, 0, 0.7) "
+                : undefined,
+          },
+        ]}
+      >
         <TouchableOpacity>
           {todo.status === "complited" ? (
             <AntDesign
