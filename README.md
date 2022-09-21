@@ -28,8 +28,7 @@
 # Run
 
 ```
-git clone https://github.com/vkuznetsoff/todo-list-rn.git -b master
-
+git clone https://github.com/vkuznetsoff/todo-list-rn.git
 npm i
 
 npm run web
