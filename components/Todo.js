@@ -55,9 +55,11 @@ const Todo = ({ todo, updateTodo, removeTodo }) => {
                   todo.status === COMPLITED ? "line-through" : undefined,
               },
             ]}
+            // numberOfLines={1}
           >
             {todo.text}
           </Text>
+
           <View style={styles.remove}>
             <Feather
               name="delete"
@@ -98,6 +100,7 @@ const styles = StyleSheet.create({
     fontWeight: 500,
     fontSize: 20,
     marginLeft: 20,
+    wordBreak: "break-all",
   },
 });
 

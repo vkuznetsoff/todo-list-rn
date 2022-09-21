@@ -9,7 +9,7 @@ const InputForm = ({ addTodo }) => {
     setText(text);
   };
   const addHandle = () => {
-    addTodo(text);
+    if (text) addTodo(text.trim());
     setText("");
   };
 
@@ -24,6 +24,7 @@ const InputForm = ({ addTodo }) => {
       />
       <TextInput
         value={text}
+        multiline
         placeholder="Добавьте задачу"
         onChangeText={changeText}
         style={styles.inputtext}
@@ -36,7 +37,7 @@ const InputForm = ({ addTodo }) => {
 const styles = StyleSheet.create({
   inputform: {
     flexDirection: "row",
-    width: "60%",
+    width: "100%",
     paddingLeft: 20,
     marginBottom: 20,
     marginTop: 20,

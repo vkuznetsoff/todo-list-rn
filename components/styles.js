@@ -26,7 +26,7 @@ export const styles = StyleSheet.create({
   },
 
   todolist_content: {
-    // flex: 1,
+    flex: 1,
   },
 
   bottom: {
@@ -36,11 +36,9 @@ export const styles = StyleSheet.create({
   bottom_header: {
     width: "fit-content",
     padding: 8,
-    // borderRadius: 10,
     fontSize: 20,
     fontWeight: 500,
     marginLeft: 20,
-    // backgroundColor: "#34495E",
     color: "#6E2C00",
   },
 });
